@@ -1,0 +1,479 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#game-board {
+    background-image: url('../images/world2.jpg');
+    background-size: 100% 100%;
+    width: 100vw;
+    height: 100vh;
+}
+
+canvas {
+    display: block;
+}
+
+#drawing-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+  }
+
+.tank {
+    cursor: pointer;
+    animation: tank-animation 0.5s ease-in-out;
+}
+
+.tank:hover .shadow{
+    background-color: #15151521;
+    border-radius: 50%;
+}
+
+@keyframes tank-animation {
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.tank-red {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-image: url('../images/tank-red.png');
+    background-size: cover;
+}
+
+.tank-green {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-image: url('../images/tank-green.png');
+    background-size: cover;
+}
+
+.shadow {
+    position: absolute;
+    width: 40px; 
+    height: 20px; 
+    background-color: rgba(0, 0, 0, 0.3); 
+    top: calc(50% + 9px);
+    left: calc(50% + 15px); 
+    transform: translateX(-35%);
+    border-radius: 50%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.explosion{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+}
+
+.card-body{
+    text-align: center;
+}
+
+.card.red{
+    position: absolute;
+    width: 10rem;
+    top: 65%;
+    left: 1%;
+}
+
+.card.green{
+    position: absolute;
+    width: 10rem;
+    top: 65%;
+    left: 9%;
+}
+
+.plus-circle{
+    position: absolute;
+    top: 140px;
+    right: 25px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: white;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.pulsate-fwd {
+	-webkit-animation: pulsate-fwd 1.5s ease-in-out infinite both;
+	        animation: pulsate-fwd 1.5s ease-in-out infinite both;
+}
+
+.round{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.text-round {
+    color: white;
+    font-size: 150px;
+    font-weight: 700;
+}
+
+.puff-out-explosion {
+    background-image: url('../images/explosion.png');
+    background-size: cover;
+    margin-left: 5px;
+    -webkit-animation: puff-out-explosion 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) both;
+            animation: puff-out-explosion 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) both;
+}
+
+.puff-out-center { 
+	-webkit-animation: puff-out-center 5s cubic-bezier(0.165, 0.840, 0.440, 1.000) both;
+	        animation: puff-out-center 5s cubic-bezier(0.165, 0.840, 0.440, 1.000) both;
+}
+
+@-webkit-keyframes pulsate-fwd {
+    0% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+    50% {
+      -webkit-transform: scale(1.1);
+              transform: scale(1.1);
+    }
+    100% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+}
+
+@keyframes pulsate-fwd {
+    0% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+    50% {
+      -webkit-transform: scale(1.1);
+              transform: scale(1.1);
+    }
+    100% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+}
+
+@-webkit-keyframes puff-out-center {
+    0% {
+        -webkit-transform: translate(-50%, -50%) scale(1);
+                transform: translate(-50%, -50%) scale(1);
+        -webkit-filter: blur(0px);
+                filter: blur(0px);
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: translate(-50%, -50%) scale(2);
+                transform: translate(-50%, -50%) scale(2);
+        -webkit-filter: blur(4px);
+                filter: blur(4px);
+        opacity: 0;
+    }
+}
+
+@keyframes puff-out-center {
+    0% {
+        -webkit-transform: translate(-50%, -50%) scale(1);
+                transform: translate(-50%, -50%) scale(1);
+        -webkit-filter: blur(0px);
+                filter: blur(0px);
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: translate(-50%, -50%) scale(2);
+                transform: translate(-50%, -50%) scale(2);
+        -webkit-filter: blur(4px);
+                filter: blur(4px);
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes puff-out-explosion {
+    0% {
+        -webkit-transform: scale(1);
+                transform: scale(1);
+        -webkit-filter: blur(0px);
+                filter: blur(0px);
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: scale(2);
+                transform: scale(2);
+        -webkit-filter: blur(4px);
+                filter: blur(4px);
+        opacity: 0;
+    }
+}
+
+@keyframes puff-out-explosion {
+    0% {
+        -webkit-transform: scale(1);
+                transform: scale(1);
+        -webkit-filter: blur(0px);
+                filter: blur(0px);
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: scale(2);
+                transform: scale(2);
+        -webkit-filter: blur(4px);
+                filter: blur(4px);
+        opacity: 0;
+    }
+}
+
+/* NORTH AMERICA */
+.northwestTerritories{
+    top: 15%;
+    left: 15%;
+}
+
+.alaska{
+    top: 15%;
+    left: 5%;
+}
+
+.greenland {
+    top: 8%; 
+    left: 37%;
+}
+
+.westUnitedStates{
+    top: 33%;
+    left: 15%;
+}
+
+.centralAmerica{
+    top: 43%;
+    left: 16%;
+}
+
+.easternUnitedStates{
+    top: 35%;
+    left: 22%;
+}
+
+.quebec{
+    top: 24%;
+    left: 29%;
+}
+
+.ontario{
+    top: 25%;
+    left: 21%;
+}
+
+.alberta{
+    top: 24%;
+    left: 15%;
+}
+
+/* NORTH AMERICA END */
+
+/* SUD AMERICA */
+
+.venezuela{
+    top: 54%;
+    left: 20%;
+}
+
+.brazil{
+    top: 64%;
+    left: 27.5%;
+}
+
+.peru{
+    top: 68%;
+    left: 22%;
+}
+
+.argentina{
+    top: 78%;
+    left: 22.5%;
+}
+
+/* SUD AMERICA END */
+
+/* AFRICA */
+
+.northAfrica{
+    top: 55%;
+    left: 41%;
+}
+
+.egypt{
+    top: 50%;
+    left: 48%;
+}
+
+.congo{
+    top: 69%;
+    left: 47.5%;
+}
+
+.eastAfrica{
+    top: 62%;
+    left: 52%;
+}
+
+.southerAfrica{
+    top: 82%;
+    left: 47.5%;
+}
+
+.madagascar{
+    top: 81%;
+    left: 55.5%;
+}
+
+/* AFRICA END */
+
+/* EUROPE */
+
+.iceland{
+    top: 18.5%;
+    left: 40%;
+}
+
+.scandinavia{
+    top: 18.5%;
+    left: 45.5%;
+}
+
+.greatBritain{
+    top: 28%;
+    left: 40.5%;
+}
+
+.northEurope{
+    top: 30%;
+    left: 45.5%;
+}
+
+.westEurope{
+    top: 39%;
+    left: 40%;
+}
+
+.southEurope{
+    top: 37%;
+    left: 48%;
+}
+
+.ukraine{
+    top: 25%;
+    left: 55%;
+}
+
+/* EUROPE END */
+
+/* ASIA */
+
+.urals{
+    top: 23%;
+    left: 65%;
+}
+
+.afghanistan{
+    top: 35%;
+    left: 63%;
+}
+
+.siberia{
+    top: 21%;
+    left: 71%;
+}
+
+.yakutia{
+    top: 16%;
+    left: 80%;
+}
+
+.chita{
+    top: 25%;
+    left: 77%;
+}
+
+.kamchatka{
+    top: 16%;
+    left: 90%;
+}
+
+.japan{
+    top: 36%;
+    left: 86%;
+}
+
+.mongolia{
+    top: 33%;
+    left: 80%;
+}
+
+.middleEast{
+    top: 48%;
+    left: 55%;
+}
+
+.india{
+    top: 48%;
+    left: 65%;
+}
+
+.china{
+    top: 41%;
+    left: 73%;
+}
+
+.siam{
+    top: 52%;
+    left: 74%;
+}
+
+/* ASIA END */
+
+/* OCEANIA */
+
+.indonesia{
+    top: 63%;
+    left: 76.5%;
+}
+
+.newGuinea{
+    top: 66%;
+    left: 87%;
+}
+
+.eastAsustralia{
+    top: 80%;
+    left: 85%;
+}
+
+.westernAustralia{
+    top: 79%;
+    left: 77%;
+}
+
+/* OCEANIA END */

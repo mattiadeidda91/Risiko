@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Risiko Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dice.css">
+    <script src="js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <!--<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+    
+    <div class="round puff-out-center">
+        <span id="roundTxt" class="text-round">FIGHT</span>
+    </div>
+    
+    <!-- BOARD -->
+    <div id="game-board">
+        
+        <canvas id="myCanvas"></canvas>
+
+        <!-- NORTH AMERICA -->
+        <div class="tank alaska" country="alaska" borderstates="northwestTerritories,alberta,kamchatka">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+        <div class="tank northwestTerritories" country="northwestTerritories" borderstates="alaska,alberta,ontario,greenland">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+        <div class="tank westUnitedStates" country="westUnitedStates" borderstates="alberta,ontario,easternUnitedStates,centralAmerica">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+        <div class="tank centralAmerica" country="centralAmerica" borderstates="venezuela,easternUnitedStates,westUnitedStates">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+        <div class="tank easternUnitedStates" country="easternUnitedStates" borderstates="centralAmerica,westUnitedStates,ontario,quebec">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+        <div class="tank greenland" country="greenland" borderstates="quebec,northwestTerritories,iceland">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+        <div class="tank quebec" country="quebec" borderstates="easternUnitedStates,ontario,greenland">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+        <div class="tank ontario" country="ontario" borderstates="quebec,easternUnitedStates,westUnitedStates,northwestTerritories,alberta,greenland">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+        <div class="tank alberta" country="alberta" borderstates="alaska,northwestTerritories,westUnitedStates,ontario">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+
+        <!-- NORTH AMERICA END -->
+
+        <!-- SUD AMERICA -->
+
+        <div class="tank venezuela" country="venezuela" borderstates="centralAmerica,peru,brazil">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+        <div class="tank brazil" country="brazil" borderstates="venezuela,peru,argentina,northAfrica">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+        <div class="tank peru" country="peru" borderstates="venezuela,brazil,argentina">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+        <div class="tank argentina" country="argentina" borderstates="peru,brazil">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+
+        <!-- SUD AMERICA END -->
+
+        <!-- EUROPE -->
+
+        <div class="tank iceland" country="iceland" borderstates="greenland,greatBritain,scandinavia">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+        <div class="tank scandinavia" country="scandinavia" borderstates="ukraine,northEurope,iceland">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+        <div class="tank greatBritain" country="greatBritain" borderstates="iceland,northEurope,westEurope">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+        <div class="tank northEurope" country="northEurope" borderstates="greatBritain,westEurope,scandinavia,southEurope,ukraine">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+        <div class="tank westEurope" country="westEurope" borderstates="southEurope,northEurope,greatBritain,northAfrica">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+        <div class="tank southEurope" country="southEurope" borderstates="northAfrica,egypt,westEurope,northEurope,middleEast,ukraine">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+        <div class="tank ukraine" country="ukraine" borderstates="southEurope,scandinavia,northEurope,middleEast,afghanistan,urals">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+
+        <!-- EUROPE END -->
+
+        <!-- AFRICA -->
+
+        <div class="tank northAfrica" country="northAfrica" borderstates="brazil,westEurope,southEurope,egypt,eastAfrica,congo">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+        <div class="tank egypt" country="egypt" borderstates="southEurope,middleEast,northAfrica,eastAfrica">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+        <div class="tank congo" country="congo" borderstates="northAfrica,eastAfrica,southerAfrica">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+        <div class="tank eastAfrica" country="eastAfrica" borderstates="congo,egypt,northAfrica,madagascar">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+        <div class="tank southerAfrica" country="southerAfrica" borderstates="eastAfrica,congo,madagascar">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+        <div class="tank madagascar" country="madagascar" borderstates="southerAfrica,eastAfrica">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+
+        <!-- AFRICA END -->
+
+        <!-- ASIA -->
+
+        <div class="tank urals" country="urals" borderstates="ukraine,afghanistan,china,siberia">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+        <div class="tank siberia" country="siberia" borderstates="urals,yakutia,chita,mongolia,china">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+        <div class="tank yakutia" country="yakutia" borderstates="kamchatka,siberia,chita">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+        <div class="tank chita" country="chita" borderstates="siberia,mongolia,yakutia,kamchatka">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+        <div class="tank kamchatka" country="kamchatka" borderstates="japan,mongolia,yakutia,chita,alaska">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+        <div class="tank japan" country="japan" borderstates="mongolia,kamchatka">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+        <div class="tank mongolia" country="mongolia" borderstates="japan,china,siberia,chita,kamchatka">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+        <div class="tank afghanistan" country="afghanistan" borderstates="ukraine,middleEast,india,china,urals">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+        <div class="tank middleEast" country="middleEast" borderstates="egypt,southEurope,ukraine,afghanistan,india,">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+        <div class="tank india" country="india" borderstates="middleEast,afghanistan,china,siam">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+        <div class="tank china" country="china" borderstates="siam,india,afghanistan,urals,siberia,mongolia">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+        <div class="tank siam" country="siam" borderstates="indonesia,india,china">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+
+        <!-- ASIA END -->
+
+        <!-- OCEANIA -->
+
+        <div class="tank indonesia" country="indonesia" borderstates="siam,newGuinea,westernAustralia">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+        <div class="tank newGuinea" country="newGuinea" borderstates="indonesia,eastAsustralia">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+        <div class="tank eastAsustralia" country="eastAsustralia" borderstates="newGuinea,westernAustralia">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+        <div class="tank westernAustralia" country="westernAustralia" borderstates="indonesia,eastAsustralia">
+            <div class="shadow">3</div>
+            <div class="explosion"></div>
+        </div>
+
+        <!-- OCEANIA END -->
+    </div>
+
+    <!-- LEGEND -->
+    <div class="card red pulsate-fwd">
+        <img src="images/tank-red.png" class="card-img-top" style="background-color: #ff000059;" alt="...">
+        <div class="card-body">
+            <div class="rounded-circle d-flex justify-content-center align-items-center bg-secondary text-white" style="height: 100px;">
+                <span class="display-4" id="newTanksRed">0</span>
+                <div id="newTanksRedIcon" class="plus-circle hidden" style="background-color: #ff0000;"></div>
+            </div>
+            <button id="btnEndPhaseRed" class="btn btn-primary mt-2">Battle</button>
+        </div>
+    </div>
+    <div class="card green">
+        <img src="images/tank-green.png" class="card-img-top" style="background-color: #0080006e;" alt="...">
+        <div class="card-body">
+            <div class="rounded-circle d-flex justify-content-center align-items-center bg-secondary text-white" style="height: 100px;">
+                <span class="display-4" id="newTanksGreen">0</span>
+                <div id="newTanksGreenIcon" class="plus-circle hidden" style="background-color: #008000;"></div>
+            </div>
+            <button id="btnEndPhaseGreen" class="btn btn-primary mt-2 hidden">Battle</button>
+        </div>
+    </div>
+
+    <!-- LEGEND END -->
+
+    <!-- MODAL BATTLE -->
+    <!-- 
+        https://getbootstrap.com/docs/4.0/components/modal/
+        https://www.ecogiochi.it/giochi-gratis-online/simulazione/risiko-1-world-wars/
+        $('#myModal').modal('toggle');
+        $('#myModal').modal('show');
+        $('#myModal').modal('hide'); 
+    -->
+    
+    <div class="modal fade" id="battleModal" tabindex="-1" role="dialog" aria-labelledby="battleModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h5 class="modal-title w-100" id="exampleModalLongTitle">BATTLE</h5>
+                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>-->
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid" style="background: linear-gradient(90deg, rgb(249 0 0 / 50%) 0%, rgb(29 253 62 / 50%) 100%);">
+                    <div class="row">
+                        <div class="col-4">
+                            <img src="images/tank-red.png" class="card-img-top" alt="red tanks">
+                            <div class="d-flex justify-content-center align-items-center text-white" style="height: 100px;">
+                                <span class="display-4" id="battleTanksRed">3</span>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div id='dice1Red' class="dice dice-one">
+                                <div id="dice-one-side-one" class='side one'>
+                                  <div class="dot one-1"></div>
+                                </div>
+                                <div id="dice-one-side-two" class='side two'>
+                                  <div class="dot two-1"></div>
+                                  <div class="dot two-2"></div>
+                                </div>
+                                <div id="dice-one-side-three" class='side three'>
+                                  <div class="dot three-1"></div>
+                                  <div class="dot three-2"></div>
+                                  <div class="dot three-3"></div>
+                                </div>
+                                <div id="dice-one-side-four" class='side four'>
+                                  <div class="dot four-1"></div>
+                                  <div class="dot four-2"></div>
+                                  <div class="dot four-3"></div>
+                                  <div class="dot four-4"></div>
+                                </div>
+                                <div id="dice-one-side-five" class='side five'>
+                                  <div class="dot five-1"></div>
+                                  <div class="dot five-2"></div>
+                                  <div class="dot five-3"></div>
+                                  <div class="dot five-4"></div>
+                                  <div class="dot five-5"></div>
+                                </div>
+                                <div id="dice-one-side-six" class='side six'>
+                                  <div class="dot six-1"></div>
+                                  <div class="dot six-2"></div>
+                                  <div class="dot six-3"></div>
+                                  <div class="dot six-4"></div>
+                                  <div class="dot six-5"></div>
+                                  <div class="dot six-6"></div>
+                                </div>
+                            </div>
+                            <div id='dice2Red' class="dice dice-two hidden">
+                            <div id="dice-two-side-one" class='side one'>
+                                <div class="dot one-1"></div>
+                            </div>
+                            <div id="dice-two-side-two" class='side two'>
+                                <div class="dot two-1"></div>
+                                <div class="dot two-2"></div>
+                            </div>
+                            <div id="dice-two-side-three" class='side three'>
+                                <div class="dot three-1"></div>
+                                <div class="dot three-2"></div>
+                                <div class="dot three-3"></div>
+                            </div>
+                            <div id="dice-two-side-four" class='side four'>
+                                <div class="dot four-1"></div>
+                                <div class="dot four-2"></div>
+                                <div class="dot four-3"></div>
+                                <div class="dot four-4"></div>
+                            </div>
+                            <div id="dice-two-side-five" class='side five'>
+                                <div class="dot five-1"></div>
+                                <div class="dot five-2"></div>
+                                <div class="dot five-3"></div>
+                                <div class="dot five-4"></div>
+                                <div class="dot five-5"></div>
+                            </div>
+                            <div id="dice-two-side-six" class='side six'>
+                                <div class="dot six-1"></div>
+                                <div class="dot six-2"></div>
+                                <div class="dot six-3"></div>
+                                <div class="dot six-4"></div>
+                                <div class="dot six-5"></div>
+                                <div class="dot six-6"></div>
+                            </div>
+                            </div>
+                            <div id='dice3Red' class="dice dice-three hidden">
+                                <div id="dice-three-side-one" class='side one'>
+                                    <div class="dot one-1"></div>
+                                </div>
+                                <div id="dice-three-side-two" class='side two'>
+                                    <div class="dot two-1"></div>
+                                    <div class="dot two-2"></div>
+                                </div>
+                                <div id="dice-three-side-three" class='side three'>
+                                    <div class="dot three-1"></div>
+                                    <div class="dot three-2"></div>
+                                    <div class="dot three-3"></div>
+                                </div>
+                                <div id="dice-three-side-four" class='side four'>
+                                    <div class="dot four-1"></div>
+                                    <div class="dot four-2"></div>
+                                    <div class="dot four-3"></div>
+                                    <div class="dot four-4"></div>
+                                </div>
+                                <div id="dice-three-side-five" class='side five'>
+                                    <div class="dot five-1"></div>
+                                    <div class="dot five-2"></div>
+                                    <div class="dot five-3"></div>
+                                    <div class="dot five-4"></div>
+                                    <div class="dot five-5"></div>
+                                </div>
+                                <div id="dice-three-side-six" class='side six'>
+                                    <div class="dot six-1"></div>
+                                    <div class="dot six-2"></div>
+                                    <div class="dot six-3"></div>
+                                    <div class="dot six-4"></div>
+                                    <div class="dot six-5"></div>
+                                    <div class="dot six-6"></div>
+                                </div>
+                                </div>
+                            <div class="d-flex justify-content-center align-items-center text-white" style="height: 100px;">
+                                <span class="display-4" id="resultDiceRed"></span>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div id='dice1Green' class="dice dice-one">
+                                <div id="dice-one-side-one" class='side one'>
+                                  <div class="dot one-1"></div>
+                                </div>
+                                <div id="dice-one-side-two" class='side two'>
+                                  <div class="dot two-1"></div>
+                                  <div class="dot two-2"></div>
+                                </div>
+                                <div id="dice-one-side-three" class='side three'>
+                                  <div class="dot three-1"></div>
+                                  <div class="dot three-2"></div>
+                                  <div class="dot three-3"></div>
+                                </div>
+                                <div id="dice-one-side-four" class='side four'>
+                                  <div class="dot four-1"></div>
+                                  <div class="dot four-2"></div>
+                                  <div class="dot four-3"></div>
+                                  <div class="dot four-4"></div>
+                                </div>
+                                <div id="dice-one-side-five" class='side five'>
+                                  <div class="dot five-1"></div>
+                                  <div class="dot five-2"></div>
+                                  <div class="dot five-3"></div>
+                                  <div class="dot five-4"></div>
+                                  <div class="dot five-5"></div>
+                                </div>
+                                <div id="dice-one-side-six" class='side six'>
+                                  <div class="dot six-1"></div>
+                                  <div class="dot six-2"></div>
+                                  <div class="dot six-3"></div>
+                                  <div class="dot six-4"></div>
+                                  <div class="dot six-5"></div>
+                                  <div class="dot six-6"></div>
+                                </div>
+                            </div>
+                            <div id='dice2Green' class="dice dice-two hidden">
+                            <div id="dice-two-side-one" class='side one'>
+                                <div class="dot one-1"></div>
+                            </div>
+                            <div id="dice-two-side-two" class='side two'>
+                                <div class="dot two-1"></div>
+                                <div class="dot two-2"></div>
+                            </div>
+                            <div id="dice-two-side-three" class='side three'>
+                                <div class="dot three-1"></div>
+                                <div class="dot three-2"></div>
+                                <div class="dot three-3"></div>
+                            </div>
+                            <div id="dice-two-side-four" class='side four'>
+                                <div class="dot four-1"></div>
+                                <div class="dot four-2"></div>
+                                <div class="dot four-3"></div>
+                                <div class="dot four-4"></div>
+                            </div>
+                            <div id="dice-two-side-five" class='side five'>
+                                <div class="dot five-1"></div>
+                                <div class="dot five-2"></div>
+                                <div class="dot five-3"></div>
+                                <div class="dot five-4"></div>
+                                <div class="dot five-5"></div>
+                            </div>
+                            <div id="dice-two-side-six" class='side six'>
+                                <div class="dot six-1"></div>
+                                <div class="dot six-2"></div>
+                                <div class="dot six-3"></div>
+                                <div class="dot six-4"></div>
+                                <div class="dot six-5"></div>
+                                <div class="dot six-6"></div>
+                            </div>
+                            </div>
+                            <div id='dice3Green' class="dice dice-three hidden">
+                                <div id="dice-three-side-one" class='side one'>
+                                    <div class="dot one-1"></div>
+                                </div>
+                                <div id="dice-three-side-two" class='side two'>
+                                    <div class="dot two-1"></div>
+                                    <div class="dot two-2"></div>
+                                </div>
+                                <div id="dice-three-side-three" class='side three'>
+                                    <div class="dot three-1"></div>
+                                    <div class="dot three-2"></div>
+                                    <div class="dot three-3"></div>
+                                </div>
+                                <div id="dice-three-side-four" class='side four'>
+                                    <div class="dot four-1"></div>
+                                    <div class="dot four-2"></div>
+                                    <div class="dot four-3"></div>
+                                    <div class="dot four-4"></div>
+                                </div>
+                                <div id="dice-three-side-five" class='side five'>
+                                    <div class="dot five-1"></div>
+                                    <div class="dot five-2"></div>
+                                    <div class="dot five-3"></div>
+                                    <div class="dot five-4"></div>
+                                    <div class="dot five-5"></div>
+                                </div>
+                                <div id="dice-three-side-six" class='side six'>
+                                    <div class="dot six-1"></div>
+                                    <div class="dot six-2"></div>
+                                    <div class="dot six-3"></div>
+                                    <div class="dot six-4"></div>
+                                    <div class="dot six-5"></div>
+                                    <div class="dot six-6"></div>
+                                </div>
+                                </div>
+                            <div class="d-flex justify-content-center align-items-center text-white" style="height: 100px;">
+                                <span class="display-4" id="resultDiceGreen"></span>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <img src="images/tank-green.png" class="card-img-top" alt="green tanks">
+                            <div class="d-flex justify-content-center align-items-center text-white" style="height: 100px;">
+                                <span class="display-4" id="battleTanksGreen">3</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- MODAL BATTLE END -->
+    
+</body>
+</html>

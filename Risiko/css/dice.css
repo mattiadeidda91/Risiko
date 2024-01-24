@@ -1,0 +1,144 @@
+.dice {
+    position: relative;
+    width: 50px; 
+    height: 50px;
+    /*left: 30%;*/
+    top: 10%;
+    margin-bottom: 10px;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+}
+
+.dot {
+    position: absolute;
+    width: 10px;
+    height: 10px; 
+    margin: 4px 5px 5px 3px;
+    border-radius: 10px;
+    background-color: #f25f5c;
+    box-shadow: inset 2px 2px #d90429;
+}
+
+.side {
+    position: absolute;
+    background-color: #ffF;
+    border-radius:5px;
+    width: 50px; /* Ridotto il dimensione */
+    height: 50px; /* Ridotto il dimensione */
+    border: 1px solid #e5e5e5;
+    text-align: center;
+    line-height: 2em;
+}
+
+.side:nth-child(1) {
+    transform: translateZ(1.55em); /* Adattato la dimensione */
+}
+
+.side:nth-child(6) {
+    transform: rotateY(90deg) translateZ(1.55em); /* Adattato la dimensione */
+}
+
+.side:nth-child(3) {
+    transform: rotateY(-90deg) translateZ(1.55em); /* Adattato la dimensione */
+}
+
+.side:nth-child(4) {
+    transform: rotateX(90deg) translateZ(1.55em); /* Adattato la dimensione */
+}
+
+.side:nth-child(5) {
+    transform: rotateX(-90deg) translateZ(1.55em); /* Adattato la dimensione */
+}
+
+.side:nth-child(2) {
+    transform: rotateY(-180deg) translateZ(1.55em); /* Adattato la dimensione */
+}
+
+.show-1 {
+    transform: rotateX(720deg) rotateZ(-720deg); 
+}
+
+.show-2 {
+    transform: rotateX(-900deg) rotateZ(1080deg); 
+}
+
+.show-6 {
+    transform: rotateY(-450deg) rotateZ(-1440deg); 
+}
+
+.show-3 {
+    transform: rotateY(810deg) rotateZ(720deg); 
+}
+
+.show-4 {
+    transform: rotateX(-810deg) rotateZ(-1080deg); 
+}
+
+.show-5 {
+    transform: rotateX(450deg) rotateZ(-720deg); 
+}
+
+.two-1, .three-1, .four-1, .five-1 {
+    top: 10%; 
+    left: 10%; 
+}
+
+.four-3, .five-3 {
+    top: 10%; 
+    left: 50%; 
+}
+
+.one-1, .three-2, .five-5 {
+    top: 30%; 
+    left: 30%; 
+}
+
+.four-2, .five-2 {
+    top: 50%; 
+    left: 10%; 
+}
+
+.four-4, .five-4 {
+    top: 50%; 
+    left: 50%; 
+}
+
+.three-3{
+    top: 50%;
+    left: 52%;
+}
+
+.two-2{
+    top: 55%;
+    left: 60%;
+}
+
+.six-1{
+    top: 0%;
+    left: 10%;
+}
+
+.six-2 {
+    top: 60%;
+    left: 10%;
+}
+
+.six-3{
+    top: 30%;
+    left: 10%;
+}
+
+.six-5 {
+    top: 60%;
+    left: 50%;
+}
+
+.six-4{
+    top: 0%;
+    left: 50%;
+}
+
+.six-6{
+    top: 30%;
+    left: 50%;
+}
